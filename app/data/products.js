@@ -102,7 +102,41 @@ const gamingConsoles = [
 			"The PlayStation 5 Digital Edition lacks a disc drive for digital-only gaming.",
 		price: 449.99,
 	},
-	// Add more entries for Xbox variants as needed
+	{
+		title: "Samsung 4K Smart Television",
+		description:
+			"A 55-inch 4K Ultra HD Smart TV with HDR and built-in streaming apps.",
+		price: 599.99,
+	},
+	{
+		title: "LG OLED Television",
+		description: "A 65-inch OLED TV with stunning colors and perfect blacks.",
+		price: 1499.99,
+	},
+	{
+		title: "Sony 8K LED Television",
+		description:
+			"An 85-inch 8K LED TV with incredible clarity and vivid picture quality.",
+		price: 3499.99,
+	},
+	{
+		title: "Whirlpool Side-by-Side Refrigerator",
+		description:
+			"A 25 cu. ft. side-by-side refrigerator with ice and water dispenser.",
+		price: 999.99,
+	},
+	{
+		title: "LG French Door Refrigerator",
+		description:
+			"A 36 cu. ft. French door refrigerator with smart cooling technology.",
+		price: 1799.99,
+	},
+	{
+		title: "Samsung Counter-Depth Refrigerator",
+		description:
+			"A counter-depth 23 cu. ft. refrigerator with FlexZone drawer.",
+		price: 1399.99,
+	},
 ];
 
 module.exports = gamingConsoles;

@@ -27,10 +27,32 @@ export async function POST(request) {
 		const synonymDictionary = {
 			// PlayStation
 			PlayStation: ["console", "ps", "sony"],
-			xbox: ["xbox", "xbox one", "xbox series x", "xbox series s", "microsoft"],
+			xbox: [
+				"xbox",
+				"xbox one",
+				"xbox series x",
+				"xbox series s",
+				"microsoft",
+				"console",
+			],
+			refrigerator: ["fridge", "freezer"],
+			television: [
+				"led",
+				"tv",
+				"4k",
+				"8k",
+				"oled",
+				"smart tv",
+				"samsung",
+				"lg",
+				"sony",
+			],
 
 			// Add more synonyms for other gaming consoles as needed
 		};
+
+		const matchingKeywords = [];
+
 		for (const key in synonymDictionary) {
 			const synonyms = synonymDictionary[key];
 			const similarityScores = synonyms.map((synonym) =>
@@ -41,8 +63,7 @@ export async function POST(request) {
 			const maxSimilarity = Math.max(...similarityScores);
 
 			if (maxSimilarity > 0.5) {
-				correctedQuery = key;
-				break;
+				matchingKeywords.push(key);
 			}
 		}
 
@@ -52,11 +73,19 @@ export async function POST(request) {
 			threshold: 0.4,
 		});
 
-		const searchResults = fuse.search(correctedQuery);
+		const searchResults = [];
+
+		// Add matching synonyms to the search results
+		matchingKeywords.forEach((keyword) => {
+			const synonymResults = fuse.search(keyword);
+			searchResults.push(...synonymResults);
+		});
+
+		const filteredResults = searchResults.map((result) => result.item);
 
 		return NextResponse.json({
 			success: true,
-			results: searchResults.map((result) => result.item),
+			results: filteredResults,
 			message: "Here are your search results",
 		});
 	} catch (error) {
