@@ -22,11 +22,8 @@ export async function POST(request) {
 		const { query } = await request.json();
 
 		const lowercaseQuery = query.toLowerCase();
-		let correctedQuery = lowercaseQuery;
-
 		const synonymDictionary = {
-			// PlayStation
-			PlayStation: ["console", "ps", "sony"],
+			playstation: ["console", "ps", "sony"],
 			xbox: [
 				"xbox",
 				"xbox one",
@@ -47,8 +44,6 @@ export async function POST(request) {
 				"lg",
 				"sony",
 			],
-
-			// Add more synonyms for other gaming consoles as needed
 		};
 
 		const matchingKeywords = [];
